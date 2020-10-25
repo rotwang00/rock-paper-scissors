@@ -33,20 +33,37 @@
         } else if ((playerSelection == "rock" && computerSelection == "scissors") ||
             (playerSelection == "scissors" && computerSelection == "paper") ||
             (playerSelection == "paper" && computerSelection == "rock")) {
+            playerScore++;
             return ("Player wins!");
         } else {
+            computerScore++;
             return ("Computer wins!");
         }
     }
 
-    let choices = ["rock", "paper", "scissors"];
-    let playerSelection = getPlayerChoice();
-    let computerSelection = computerPlay();
-    let result = playRound(playerSelection, computerSelection);
+    function game() {
+        // Plays five rounds
+        for (i = 1; i <= 5; i++) {
+            let playerSelection = getPlayerChoice();
+            let computerSelection = computerPlay();
+            let result = playRound(playerSelection, computerSelection);
 
-    console.log("Player: " + playerSelection);
-    console.log("Computer: " + computerSelection);
-    console.log(result);
+            console.log("Player: " + playerSelection);
+            console.log("Computer: " + computerSelection);
+            console.log(result);
+        }
+        console.log("Final scores");
+        console.log("============");
+        console.log("Player: " + playerScore + " wins")
+        console.log("Computer: " + computerScore + " wins")
+    }
+
+    let choices = ["rock", "paper", "scissors"];
+    let playerScore = 0;
+    let computerScore = 0;
+
+    game();
+
 
 </script>
 <body>
