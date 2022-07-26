@@ -1,6 +1,22 @@
 let playerScore = 0;
 let computerScore = 0;
 
+const btn1 = document.getElementById('rock');
+const btn2 = document.getElementById('paper');
+const btn3 = document.getElementById('scissors');
+
+btn1.addEventListener('click', function() {
+    playRound('rock');
+});
+
+btn2.addEventListener('click', function() {
+    playRound('paper')
+});
+
+btn3.addEventListener('click', function() {
+    playRound('scissors');
+});
+
 const getComputerChoice = function () {
     let choice = Math.floor((Math.random()) * 3)
     switch(choice) {
@@ -13,41 +29,38 @@ const getComputerChoice = function () {
     }
 }
 
-const getPlayerChoice = function() {
-    let choice = prompt('Please choose rock, paper, or scissors:')
-    return choice;
-}
-
-const playRound = function(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase();
-
+const playRound = function(playerSelection) {
+    let result = '';
+    let computerSelection = getComputerChoice();
+    
     if (playerSelection === computerSelection) {
-        return 'It\'s a tie!';
-    }
-
-    if (
+        result = 'It\'s a tie!';
+    } else if (
         (playerSelection === 'rock' && computerSelection === 'scissors') ||
         (playerSelection === 'paper' && computerSelection === 'rock') ||
         (playerSelection === 'scissors' && computerSelection === 'paper')
     ) {
-        return 'Player wins!'
-    } 
-
-    return 'Computer wins!'
-}
-
-const game = function() {
-    let result = '';
-    let playerChoice = '';
-    let computerChoice = '';
-
-    for (let i = 0; i < 5; i++) {
-        playerChoice = getPlayerChoice();
-        computerChoice = getComputerChoice();
-        result = playRound(playerChoice, computerChoice);
-        processResult(playerChoice, computerChoice, result);
+        result = 'Player wins!';
+        playerScore++;
+    } else {
+        result = 'Computer wins!';
+        computerScore++;
     }
+    console.log(playerSelection, computerSelection, result);
 }
+
+// const game = function() {
+//     let result = '';
+//     let playerChoice = '';
+//     let computerChoice = '';
+
+//     for (let i = 0; i < 5; i++) {
+//         playerChoice = getPlayerChoice();
+//         computerChoice = getComputerChoice();
+//         result = playRound(playerChoice, computerChoice);
+//         processResult(playerChoice, computerChoice, result);
+//     }
+// }
 
 const processResult = function(playerChoice, computerChoice, result) {
     if (result === 'It\'s a tie!') {
@@ -62,4 +75,4 @@ const processResult = function(playerChoice, computerChoice, result) {
     console.log(`Score is Player: ${playerScore}, Computer: ${computerScore}.`)
 }
 
-game();
+// game();
