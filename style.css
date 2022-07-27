@@ -21,4 +21,41 @@ img {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.infoArea {
+    padding-top: 32px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 32px;
+}
+
+#info {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.scores {
+    display: flex;
+    justify-content: center;
+    padding-top: 32px;
+    font-size: 24px;
+    flex-wrap: wrap;
+}
+
+#playerScore {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#winNotification {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: 64px;
 }

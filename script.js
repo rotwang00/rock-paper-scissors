@@ -5,6 +5,13 @@ const btn1 = document.getElementById('rock');
 const btn2 = document.getElementById('paper');
 const btn3 = document.getElementById('scissors');
 
+const info = document.getElementById('info');
+const roundResult = document.getElementById('result');
+
+const playerInfo = document.getElementById('playerScore');
+const compInfo = document.getElementById('computerScore');
+const winBanner = document.getElementById('winNotification');
+
 btn1.addEventListener('click', function() {
     playRound('rock');
 });
@@ -34,19 +41,34 @@ const playRound = function(playerSelection) {
     let computerSelection = getComputerChoice();
     
     if (playerSelection === computerSelection) {
-        result = 'It\'s a tie!';
+        result = 'We tied this round.';
     } else if (
         (playerSelection === 'rock' && computerSelection === 'scissors') ||
         (playerSelection === 'paper' && computerSelection === 'rock') ||
         (playerSelection === 'scissors' && computerSelection === 'paper')
     ) {
-        result = 'Player wins!';
+        result = 'You won this round.';
         playerScore++;
     } else {
-        result = 'Computer wins!';
+        result = 'I won this round.';
         computerScore++;
     }
     console.log(playerSelection, computerSelection, result);
+
+    let roundChoices = `You chose ${playerSelection}. I chose ${computerSelection}.`;
+    info.textContent = roundChoices;
+    roundResult.textContent = result;
+
+    playerInfo.textContent = `Your score: ${playerScore}`;
+    compInfo.textContent = `My score: ${computerScore}`;
+
+    if (playerScore === 5) {
+        winBanner.textContent = 'You win the game!';
+    }
+
+    if (computerScore === 5) {
+        winBanner.textContent = 'I win the game!';
+    }
 }
 
 // const game = function() {
